@@ -13,7 +13,7 @@ uniform float time;
 
 void main() {
 
-    vec2 uvNew = (model_uv * 2.0) - 1.0;        
+    vec2 uvNew = (model_uv * 2.0) - 1.0;
     float r = length(uvNew);
     //ASK MARRINAN HOW TO UPLOAD TIME
     vec2 offset = model_uv*sin((r*30.0) - (time*5.0))+0.5/60.0;
