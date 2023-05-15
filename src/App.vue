@@ -22,7 +22,7 @@ export default {
             materials: {},
             selected_texture: 'video',
             textures: {video: null, webcam: null},
-            start_stop: 'Stop'
+            start_stop: 'Stop',
         }
     },
     methods: {
@@ -182,13 +182,18 @@ export default {
         rect.material = this.materials.standard;
 
         // Animation function - called before each frame gets rendered
+        let time = 0.0;
         this.scene.onBeforeRenderObservable.add(() => {
+            let delta_time = (1.0 / 60.0) * this.scene.getAnimationRatio();
+            time += delta_time;
             if (this.filter !== rect.material.name) {
                 rect.material = this.materials[this.filter];
             }
 
             if (this.textures[this.selected_texture] !== null) {
                 this.materials[this.filter].setTexture('image', this.textures[this.selected_texture]);
+                this.materials[this.filter].setFloat('time', time);
+                // console.log(time);
             }
         });
 

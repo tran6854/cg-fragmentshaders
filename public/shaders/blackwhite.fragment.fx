@@ -12,5 +12,8 @@ out vec4 FragColor;
 
 void main() {
     // Color
-    FragColor = texture(image, model_uv);
+    vec4 t = texture(image, model_uv);
+    float L = 0.299 * t.r + 0.587 * t.g + 0.114 * t.b;
+    // FragColor = texture(image, model_uv) * L;
+    FragColor = vec4(L, L, L, 1.0);
 }
